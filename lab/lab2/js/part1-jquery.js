@@ -170,4 +170,62 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+
+// Q1: Change Text Labels
+$("#main-heading").text("I Love High Speed Rail");
+
+$("#text-label1").text("Name");
+$("#text-label2").text("Origin");
+$("#text-label3").text("Destination");
+
+$("#number-label").text("Travel Time");
+
+$("#checkbox-label1").text("First Class");
+$("#checkbox-label2").text("Transfer");
+
+$("#color-label").text("Color of Your Ticket");
+
+$("button").text("Don't Click Me");
+
+// Q2: Set Input Values
+$("#text-input1").val("Bob");
+$("#text-input2").val("Philadelphia");
+$("#text-input3").val("Boston");
+$("#numeric-input").val(90);
+$("#cbox-input1").prop("checked",true);
+$("#cbox-input2").prop("checked",true);
+$("#color-input").val("#888888");
+
+// Q3: Get Input Values
+
+var selectors = ["#text-input1", "#text-input2", "#text-input3", "#numeric-input", "#cbox-input1", "#cbox-input2", "#color-input"];
+var labels = ["#text-label1", "#text-label2", "#text-label3", "#number-label", "#checkbox-label1", "#checkbox-label2", "#color-label"];
+var input_values = _.map(selectors, function(some_array){return $(some_array).val();});
+console.log(input_values);
+
+var selectors_and_input_values = {}; // Create Dictionary to Store Selector with Input Values
+for(i=0; i<selectors.length; i++){
+  selectors_and_input_values[$(labels[i]).text()]=input_values[i];
+}
+console.log(selectors_and_input_values);
+
+// Q4: Enable All fields
+
+_.each(selectors, function(some_array){$(some_array).prop('disabled', false);});
+
+// Q5: Make Click Trigger: Log Current Inputs to the Console
+$('body > div.sidebar > button').click(function(){console.log(selectors_and_input_values);});
+
+// Q6: Input and Map Lat and Long
+
+$('#text-label1').text('Location');
+$('#text-label2').text('Lat');
+$('#text-label3').text('Long');
+$('#text-input1').val("Meyerson Hall");
+$('#text-input2').val(39.952215);
+$('#text-input3').val(-75.192681);
+
+L.circleMarker([$('#text-input2').val(),$('#text-input3').val()]).addTo(map).bindPopup($('#text-input1').val()).openPopup();
+
+
 });

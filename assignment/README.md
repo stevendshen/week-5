@@ -45,4 +45,3 @@ event on it. When the button is clicked, it should run a function that selects
 the three input fields, checks their values, and assigns those values to
 variables. Those variables should be used in your application to replace
 previously hardcoded data.
-
